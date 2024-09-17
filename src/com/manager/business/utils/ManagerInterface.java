@@ -5,15 +5,32 @@ import com.manager.business.entity.Business;
 public interface ManagerInterface {
 	
 	/**
-	 * 
+	 * <p>This method is responsible to create a business entry and persist it to the storage</p>
 	 * @param business
+	 * @Version 1.0
 	 */
 	public void createBusiness(Business business);
 	
+	/**
+	 * <p>Reads a business object with provided id from storage</p>
+	 * @param id
+	 * @Version 1.0
+	 */
 	public void getBusiness(int id);
 	
+	/**
+	 * <p>Updates the details of an existing business in the storage</p>
+	 * @param id
+	 * @param business
+	 * @Version 1.0
+	 */
 	public void updateBusiness(int id, Business business);
 	
+	/**
+	 * <p>Deletes / Removes a business entry from storage for the provided Id</p>
+	 * @param id
+	 * @Version 1.0
+	 */
 	public void deleteBusiness(int id);
 	
 	// Customers
