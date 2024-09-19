@@ -7,11 +7,11 @@ import com.manager.business.utils.BusinessManagerUtils;
 public class Main {
 	
 	public static void main(String[] args) {
-		int entityOption = 0;
 		boolean isRunning = true;
 		BusinessManagerUtils utils = new BusinessManagerUtils();
 		Scanner sc = new Scanner(System.in);
 		System.out.println("######### Welcome to Business Manager ########");
+		int entityOption = 0;
 		utils.displayMainMenu();
 		entityOption = sc.nextInt();
 		while(isRunning) {
@@ -38,7 +38,6 @@ public class Main {
 					break;
 				}
 			}
-			break;
 		}
 	}
 }

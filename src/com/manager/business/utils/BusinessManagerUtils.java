@@ -9,7 +9,7 @@ import com.manager.business.entity.Business;
 public class BusinessManagerUtils implements ManagerInterface{
 	
 	List<Business> businesses = new ArrayList<>();
-	Scanner sc = new Scanner(System.in);
+	Scanner sc;
 
 	@Override
 	public void createBusiness(Business business) {
@@ -17,21 +17,22 @@ public class BusinessManagerUtils implements ManagerInterface{
 	}
 
 	@Override
-	public void getBusiness(int id) {
-		businesses.get(id);	
+	public Business getBusiness(String id) {
+		for(Business business : businesses) {
+			if(business.getBusinessId().equalsIgnoreCase(id)) {
+				return business;
+			}
+		}
+		return null;
 	}
 
 	@Override
-	public void updateBusiness(int id, Business business) {
-		Business originalBusiness = businesses.get(id);
-		originalBusiness.setBusinessName(business.getBusinessName());
-		originalBusiness.setBusinessSector(business.getBusinessSector());
-		originalBusiness.setTaxId(business.getTaxId());
-		originalBusiness.setAnnualRevenue(business.getAnnualRevenue());
+	public void updateBusiness(String id, Business business) {
+		
 	}
 
 	@Override
-	public void deleteBusiness(int id) {
+	public void deleteBusiness(String id) {
 		businesses.remove(id);		
 	}
 	
@@ -44,12 +45,40 @@ public class BusinessManagerUtils implements ManagerInterface{
 	}
 	
 	public void showBusinessManagementMenu() {
+		sc = new Scanner(System.in);
 		System.out.println("Select option from below Menu:");
 		System.out.println("1. Create a Business");
 		System.out.println("2. Edit Details for a business");
 		System.out.println("3. Get Details for a business");
 		System.out.println("4. Remove / Delete Business details");
 		System.out.println("5. Back to previous menu");
+		int option = 0;
+		option = sc.nextInt();
+		switch(option) {
+			case 1: {
+				this.createBusiness(getBusinessDetailsFromUser());
+				break;
+			}
+			case 2: {
+				// edit business
+				break;
+			}
+			case 3: {
+				System.out.println("Enter the business Id you wish to Read");
+				Business searchedBusiness = getBusiness(sc.nextLine());
+				System.out.println("Business ID : "+searchedBusiness.getBusinessId());
+				System.out.println("Business Name : "+searchedBusiness.getBusinessName());
+				System.out.println("Business Sector "+searchedBusiness.getBusinessSector());
+				System.out.println("Business Revenue : "+searchedBusiness.getAnnualRevenue());
+				System.out.println("Tax Identification : "+searchedBusiness.getTaxId());
+				break;
+			}
+			case 4: {
+				System.out.println("Enter the business Id you wish to delete");
+				deleteBusiness(sc.nextLine());
+				break;
+			}
+		}
 	}
 	
 	public void showCustomerManagementMenu() {
@@ -71,8 +100,18 @@ public class BusinessManagerUtils implements ManagerInterface{
 	}
 	
 	public Business getBusinessDetailsFromUser() {
-		System.out.println("....");
-		return null;
+		Business business = new Business();
+		System.out.println("Please enter  Business Id");
+		business.setBusinessId(sc.nextLine());
+		System.out.println("Please enter Business Name");
+		business.setBusinessName(sc.nextLine());
+		System.out.println("Please enter Business Sector");
+		business.setBusinessSector(sc.nextLine());
+		System.out.println("Please enter Annual Revenue");
+		business.setAnnualRevenue(sc.nextLine());
+		System.out.println("Please enter Tax Id");
+		business.setTaxId(sc.nextLine());
+		return business;
 	}
 	
 

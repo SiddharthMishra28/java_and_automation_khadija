@@ -16,7 +16,7 @@ public interface ManagerInterface {
 	 * @param id
 	 * @Version 1.0
 	 */
-	public void getBusiness(int id);
+	public Business getBusiness(String id);
 	
 	/**
 	 * <p>Updates the details of an existing business in the storage</p>
@@ -24,14 +24,14 @@ public interface ManagerInterface {
 	 * @param business
 	 * @Version 1.0
 	 */
-	public void updateBusiness(int id, Business business);
+	public void updateBusiness(String id, Business business);
 	
 	/**
 	 * <p>Deletes / Removes a business entry from storage for the provided Id</p>
 	 * @param id
 	 * @Version 1.0
 	 */
-	public void deleteBusiness(int id);
+	public void deleteBusiness(String id);
 	
 	// Customers
 	
