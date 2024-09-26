@@ -8,6 +8,11 @@ public class Customer {
 	private String customerName;
 	private List<Address> addresses;
 	
+	public Customer(int id, String customerName) {
+		this.id = id;
+		this.customerName = customerName;
+	}
+	
 	public int getId() {
 		return id;
 	}
@@ -26,6 +31,10 @@ public class Customer {
 	public void setAddresses(List<Address> addresses) {
 		this.addresses = addresses;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "Customer [id=" + id + ", customerName=" + customerName + ", addresses=" + addresses + "]";
+	}
 	
 }

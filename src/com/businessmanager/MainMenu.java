@@ -12,6 +12,7 @@ public class MainMenu {
 		BusinessManager businessManager = new BusinessManager();
 		CustomerManager customerManager = new CustomerManager();
 		AddressManager addressManager = new AddressManager();
+		
 		Scanner sc = new Scanner(System.in);
 		boolean isRunning = true;
 		while(isRunning) {
@@ -25,7 +26,7 @@ public class MainMenu {
 			sc.nextLine();
 			
 			switch(choice) {
-				case 1 -> businessManager.manageBusiness();
+				case 1 -> businessManager.manageBusiness(customerManager);
 				case 2 -> customerManager.manageCustomer();
 				case 3 -> addressManager.manageAddress();
 				case 4 -> isRunning = false;

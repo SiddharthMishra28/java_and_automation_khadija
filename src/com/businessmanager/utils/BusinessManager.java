@@ -5,13 +5,14 @@ import java.util.List;
 import java.util.Scanner;
 
 import com.businessmanager.entities.Business;
+import com.businessmanager.entities.Customer;
 
 public class BusinessManager {
 	
 	List<Business> businesses = new ArrayList<>();
 	Scanner sc = new Scanner(System.in);
 	
-	public void manageBusiness() {
+	public void manageBusiness(CustomerManager customerManager) {
 		boolean isRunning = true;
 		while(isRunning) {
 			System.out.println("Business Management Menu:");
@@ -19,7 +20,8 @@ public class BusinessManager {
 			System.out.println("2. Read a Business:");
 			System.out.println("3. Update a Business:");
 			System.out.println("4. Delete a Business:");
-			System.out.println("5. Navigate Back to Main Menu:");
+			System.out.println("5. Associate a customer with a business");
+			System.out.println("6. Navigate Back to Main Menu:");
 			
 			int choice = sc.nextInt();
 			sc.nextLine();
@@ -29,9 +31,31 @@ public class BusinessManager {
 			case 2 -> readBusiness();
 			case 3 -> updateBusiness();
 			case 4 -> deleteBusiness();
-			case 5 -> isRunning = false;
+			case 5 -> associateCustomer(customerManager);
+			case 6 -> isRunning = false;
 			default -> System.out.println("Invalid option selected!");
 			}
+		}
+	}
+
+	private void associateCustomer(CustomerManager customerManager) {
+		System.out.println("Enter business Id to associate a customer : ");
+		int id = sc.nextInt();
+		sc.nextLine();
+		Business business = findBusinessById(id);
+		if(business != null) {
+			System.out.println("Enter the customer id to associate the business with : ");
+			int customerId = sc.nextInt();
+			sc.nextLine();
+			Customer customer = customerManager.findCustomerById(customerId);
+			if(customer != null) {
+				business.addCustomer(customer);
+				System.out.println("Customer addded to business successfully!");
+			}else {
+				System.out.println("No customer with id "+id+" exists");
+			}
+		}else {
+			System.out.println("No business with id "+id+" exists");
 		}
 	}
 
@@ -49,7 +73,7 @@ public class BusinessManager {
 	}
 
 	private void updateBusiness() {
-		System.out.println("Enter business Id of the business to update : ");
+		System.out.println("Enter Id of the business to update : ");
 		int id = sc.nextInt();
 		sc.nextLine();
 		Business business = findBusinessById(id);

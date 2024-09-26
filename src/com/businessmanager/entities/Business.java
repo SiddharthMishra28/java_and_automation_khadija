@@ -1,12 +1,13 @@
 package com.businessmanager.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Business {
 	
 	private int id;
 	private String businessName;
-	private List<Customer> customers;
+	private List<Customer> customers = new ArrayList<>();
 	
 	public Business(int id, String businessName) {
 		this.id = id;
@@ -30,6 +31,14 @@ public class Business {
 	}
 	public void setCustomers(List<Customer> customers) {
 		this.customers = customers;
+	}
+	
+	public void addCustomer(Customer customer) {
+		customers.add(customer);
+	}
+	
+	public void removeCustomer(Customer customer) {
+		customers.remove(customer);
 	}
 
 	@Override
