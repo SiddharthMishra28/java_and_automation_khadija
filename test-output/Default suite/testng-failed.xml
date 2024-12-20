@@ -3,13 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.testng.automation.demo.SeleniumDataProvider">
+      <class name="com.testng.automation.demo.DataproviderExcel">
         <methods>
-          <include name="loginTest" invocation-numbers="1 2 3"/>
           <include name="setupSteps"/>
           <include name="tearDown"/>
+          <include name="loginTest" invocation-numbers="1 2 3"/>
         </methods>
-      </class> <!-- com.testng.automation.demo.SeleniumDataProvider -->
+      </class> <!-- com.testng.automation.demo.DataproviderExcel -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
