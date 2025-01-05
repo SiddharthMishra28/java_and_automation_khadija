@@ -7,7 +7,8 @@ import com.automation.framework.config.Lifecycle;
 public class SampleTest extends Lifecycle{
 	
 	@Test
-	public void testOne() {
-		System.out.println("Hello there sample test...");
+	public void testOne() throws InterruptedException {
+		utils.navigateTo("https://www.google.com");
+		Thread.sleep(2000);
 	}
 }
