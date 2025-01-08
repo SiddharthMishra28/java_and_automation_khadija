@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.Properties;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
@@ -22,7 +23,6 @@ public class Lifecycle {
 	
 	public static Properties config;
 	public WebDriver driver;
-	public CommonUtils utils = new CommonUtils();
 	
 	@BeforeSuite
 	public void beforeSuite() {
@@ -36,7 +36,7 @@ public class Lifecycle {
 	
 	@BeforeTest
 	public void beforeTest() {
-		utils.launchBrowser();
+		launchBrowser();
 	}
 	
 	@BeforeMethod
@@ -51,7 +51,7 @@ public class Lifecycle {
 	
 	@AfterTest
 	public void afterTest() {
-		utils.closeBrowser();
+		closeBrowser();
 	}
 	
 	@AfterClass
@@ -80,5 +80,24 @@ public class Lifecycle {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	/**
+	 * <p>Launches a Fresh instance of browser depending on the config parameters</p>
+	 */
+	public void launchBrowser() {
+		if(Lifecycle.config.getProperty("browser").equalsIgnoreCase("chrome")) {
+			driver = new ChromeDriver();
+			driver.manage().window().maximize();
+		}else if(Lifecycle.config.getProperty("browser").equalsIgnoreCase("edge")) {
+			//
+		}
+	}
+	
+	/**
+	 * <p>Quits the active browser session</p>
+	 */
+	public void closeBrowser() {
+		driver.quit();
 	}
 }

@@ -1,24 +1,14 @@
 package com.automation.framework.utils;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-
-import com.automation.framework.config.Lifecycle;
 
 public class CommonUtils {
 	
 	public WebDriver driver;
 	
-	/**
-	 * <p>Launches a Fresh instance of browser depending on the config parameters</p>
-	 */
-	public void launchBrowser() {
-		if(Lifecycle.config.getProperty("browser").equalsIgnoreCase("chrome")) {
-			driver = new ChromeDriver();
-			driver.manage().window().maximize();
-		}else if(Lifecycle.config.getProperty("browser").equalsIgnoreCase("edge")) {
-			//
-		}
+	public CommonUtils(WebDriver driver) {
+		this.driver = driver;
 	}
 	
 	/**
@@ -30,10 +20,20 @@ public class CommonUtils {
 	}
 	
 	/**
-	 * <p>Quits the active browser session</p>
+	 * <p>Clicks on the provided Webelement </p>
+	 * @param element
 	 */
-	public void closeBrowser() {
-		driver.quit();
+	public void clickElement(By element) {
+		driver.findElement(element).click();
+	}
+	
+	/**
+	 * <p>Types into provided Webelement </p>
+	 * @param element
+	 * @param keyStorkes
+	 */
+	public void type(By element, String keyStorkes) {
+		driver.findElement(element).sendKeys(keyStorkes);
 	}
 
 }
