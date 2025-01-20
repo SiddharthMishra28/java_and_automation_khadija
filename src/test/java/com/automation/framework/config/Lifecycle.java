@@ -17,12 +17,14 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
 
-import com.automation.framework.utils.CommonUtils;
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 
 public class Lifecycle {
 	
 	public static Properties config;
 	public WebDriver driver;
+
 	
 	@BeforeSuite
 	public void beforeSuite() {
